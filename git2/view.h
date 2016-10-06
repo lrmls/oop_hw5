@@ -12,16 +12,15 @@ class view{
 public:
 	void startMen();
 	void managerMen();
-	void createMen();
+	void partMen();
+	void robomen();
+	void assocMen();
 	void customerMen();
 	void bossMen();
-	void assocMen();
+	
 
 	int valid_option(string, int);
 	int valid_part_num(string);
 	double valid_double(string);
-
-
 };
-
 #endif

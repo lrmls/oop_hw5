@@ -6,57 +6,68 @@
 
 #include "std_lib_facilities.h"
 
+
 #ifndef __PARTS_CLASS
 #define __PARTS_CLASS
 class component{
-protected:
-	int part_num;
-	string name;
-	double weight;
-	double price;
-	string comment;
 
 public:
+	int part_num;
+	string name;
+	double weight=0;
+	double price=0;
+	string comment;
+	//friend robot::robot(head, torso, arm, motor, vector<battery>);   //just wanna be ur friend
+
+
 	component(int, string, double, double);
-	component(int, string, double, double, string);
+	component(int, string, double, double, string); //for if initialized comment
 	void print();		//for testing var init
 };
 
 class head : public component{
 public:
+	head();
 	head(int, string, double, double);
 	void print();		//for testing var init
 };
 
-class torso : component{
+class torso : public component{
 private:
 	int power_slots;
 public:
+	torso();
 	torso(int, string, double, double, int);
 	void print();		//for testing var init
 };
 
-class arm : component{
+class arm : public component{
 private:
-	double energy_use;
+	
 public:
+	double energy_use;
+	arm();
 	arm(int, string, double, double, double);
 	void print();		//for testing var init
 };
 
-class motor : component{
+class motor : public component{
 private:
-	double energy_use;
+	
 	double max_spd;
 public:
+	double energy_use;
+	motor();
 	motor(int, string, double, double, double, double);
 	void print();		//for testing var init
 };
 
-class battery: component{
+class battery : public component{
 private:
-	double supply;
+	
 public:
+	double supply;
+	battery();
 	battery(int, string, double, double, double);
 	void print();		//for testing var init
 };

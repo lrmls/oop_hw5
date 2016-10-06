@@ -5,14 +5,14 @@
 #include "std_lib_facilities.h"
 #include "parts.h"
 
-	//COMPONENT
+
+	//COMPONENT base for all parts
 component::component(int num, string title, double pounds, double cost){
 	part_num = num; 
 	name = title; 
 	weight = pounds;
-	price = price;
+	price = cost;
 }
-
 void component:: print(){
 	cout << part_num << ", " << name << ", " << weight << ", " << price << endl;
 } 

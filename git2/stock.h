@@ -4,15 +4,16 @@
 
 #include "std_lib_facilities.h"
 #include "parts.h"
-
+#include "robot.h"
 
 #ifndef __STOCK_CLASS
 #define __STOCK_CLASS
 
 class stock{
-public:
-
-	//vector<robot> robots;
+public:					//eww dirty public. make a friend loser
+	//robots
+	vector<robot> robots;
+	//parts
 	vector<head> heads;
 	vector<torso> torsos;
 	vector<arm> arms;
