@@ -13,7 +13,7 @@ private:
 	int model_num = 99999;
 	String name = "Temporary";
 	double weight=0;
-	double cost=0;
+	double price=0;
 	double power=0;
 	double energy_use=0;
 
@@ -26,5 +26,6 @@ private:
 public:
 	robot(head, torso, arm, motor, vector<battery>);
 	void print();
+	double get_price();
 };
 #endif

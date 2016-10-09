@@ -13,7 +13,6 @@ public:
 	void startMen();
 	void managerMen();
 	void partMen();
-	void robomen();
 	void assocMen();
 	void customerMen();
 	void bossMen();

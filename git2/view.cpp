@@ -4,6 +4,7 @@
 
 #include "std_lib_facilities.h"
 #include "view.h"
+#include "stock.h"
 
 
 void view::startMen(){
@@ -26,10 +27,7 @@ void view::partMen(){
 		<< "  (3) arm" << setw(21) << right << "(4) motor\n"
 		<< "  (5) battery\n";
 }
-void view::robomen(){
-	//base menu display for robot creation
-	
-}
+
 
 int view::valid_part_num(string input){
 	//vaidates string input returns valid 4 digit integer number

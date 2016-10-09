@@ -48,7 +48,7 @@ void manager::make_part(){
 	switch (option){
 	case 1:
 	{	head head(part_num, name, weight, price);
-		warehouse->heads.push_back(head);
+		warehouse->add_part_h(head);
 		 break;}
 	case 2:
 	{	int bat_num;
@@ -58,7 +58,7 @@ void manager::make_part(){
 			bat_num = view.valid_option(input, 4);
 		} while (bat_num == -1);
 		torso torso(part_num, name, weight, price, bat_num);
-		warehouse->torsos.push_back(torso);
+		warehouse->add_part_t(torso);
 		break;} 
 	case 3:
 	{	double usage;
@@ -68,7 +68,7 @@ void manager::make_part(){
 			usage = view.valid_double(input);
 		} while (usage == -1);
 		arm arm(part_num, name, weight, price, usage);
-		warehouse->arms.push_back(arm);
+		warehouse->add_part_a(arm);
 		 break;}
 	case 4:
 	{	double usage;
@@ -84,7 +84,7 @@ void manager::make_part(){
 			spd = view.valid_double(input);
 		} while (spd == -1);
 		motor motor(part_num, name, weight, price, usage, spd);
-		warehouse->motors.push_back(motor);
+		warehouse->add_part_m(motor);
 		break; }
 	case 5:
 	{	double supply;
@@ -94,7 +94,88 @@ void manager::make_part(){
 			supply = view.valid_double(input);
 		} while (supply == -1);
 		battery battery(part_num, name, weight, price, supply);
-		warehouse->batteries.push_back(battery);
+		warehouse->add_part_b(battery);
 		break; }
 	}
+}
+
+void manager::make_robot(){
+	// make a robot from selected parts.
+	view view;
+	int h, a, t, m;				//short sweet variable names for index of parts
+	int slots;
+	vector<battery> b;
+	string input;
+	int choice;
+	//************************************************************
+	do{
+		cout << "Select a Head:\n";
+		for (int i = 0; i < warehouse->get_qty_h(); i++)
+		{
+			head x = warehouse->get_head(i);
+			cout << "(" << i + 1 << ") ";
+			x.print();
+		}
+		fflush(stdin); cin >> input;
+		choice = view.valid_option(input,warehouse->get_qty_h());
+	} while (choice == -1);
+	h = choice -1;				//account for indexing. menu started @ 1 cuz i want it to
+	//************************************************************
+	do{
+		cout << "Select a Torso:\n";
+		for (int i = 0; i < warehouse->get_qty_t(); i++)
+		{
+			torso x = warehouse->get_torso(i);
+			slots = x.get_slots();
+			cout << "(" << i + 1 << ") ";
+			x.print();
+		}
+		fflush(stdin); cin >> input;
+		choice = view.valid_option(input, warehouse->get_qty_t());
+	} while (choice == -1);
+	t = choice - 1;
+	//************************************************************
+	do{
+		cout << "Select an Arm:\n";
+		for (int i = 0; i < warehouse->get_qty_a(); i++)
+		{
+			arm x = warehouse->get_arm(i);
+			cout << "(" << i + 1 << ") ";
+			x.print();
+		}
+		fflush(stdin); cin >> input;
+		choice = view.valid_option(input, warehouse->get_qty_a());
+	} while (choice == -1);
+	a = choice - 1;
+	//************************************************************
+	do{
+		cout << "Select a Motor:\n";
+		for (int i = 0; i < warehouse->get_qty_m(); i++)
+		{
+			motor x = warehouse->get_motor(i);
+			cout << "(" << i + 1 << ") ";
+			x.print();
+		}
+		fflush(stdin); cin >> input;
+		choice = view.valid_option(input, warehouse->get_qty_m());
+	} while (choice == -1);
+	m = choice - 1;
+	//************************************************************
+	do{
+		cout << "Select " << slots - b.size() << " Batteries(one at a time):\n";
+		for (int i = 0; i < warehouse->get_qty_b(); i++)
+		{
+			battery x = warehouse->get_battery(i);
+			cout << "(" << i + 1 << ") ";
+			x.print();
+		}
+		fflush(stdin); cin >> input;
+		choice = view.valid_option(input, warehouse->get_qty_b());
+		if (choice != -1){ b.push_back( warehouse->get_battery(choice - 1) ) ; }
+		
+	}while (choice == -1 || b.size()<slots);
+	robot robbie(warehouse->get_head(h), warehouse->get_torso(t), warehouse->get_arm(a), warehouse->get_motor(m), b);
+	robbie.print();
+	warehouse->add_robot(robbie);
+
 }

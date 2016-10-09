@@ -11,15 +11,17 @@ skull{ head }, body{ torso }, grabber{ arm }, mover{ motor }  {
 	for (int i = 0; i < battery.size(); i++)
 	{
 		energy.push_back(battery[i]);
-		power += battery[i].supply;
-		weight += battery[i].weight;
-		cost += battery[i].price;
+		power += battery[i].get_power_supply();
+		weight += battery[i].get_weight();
+		price += battery[i].get_price();
 	}
-	weight += skull.weight + body.weight + grabber.weight + mover.weight;
-	energy_use += grabber.energy_use + mover.energy_use;
-	cost += skull.price + body.price + grabber.price + mover.price;
+	weight += skull.get_weight() + body.get_weight() + grabber.get_weight() + mover.get_weight();
+	energy_use += grabber.get_usage() + mover.get_usage();
+	price += skull.get_price() + body.get_price() + grabber.get_price() + mover.get_price();
 }
 void robot::print(){
 
-	cout << "Model: " << model_num << ", Name: " << name << ", Weight(lbs): " << weight << "\nPrice($): " << cost << ", Power Supply(kwh):" << power << ", Power Usage(watts): " << energy_use << endl;
+	cout << "Model: " << model_num << ", Name: " << name << ", Weight: " << weight << "lbs\nPrice: $" << price << ", Power Supply: " << power << "kwh, Power Usage: " << energy_use << "watts" << endl;
 }
+
+double robot::get_price(){return price;}

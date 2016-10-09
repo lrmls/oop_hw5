@@ -10,7 +10,7 @@
 #define __STOCK_CLASS
 
 class stock{
-public:					//eww dirty public. make a friend loser
+private:				
 	//robots
 	vector<robot> robots;
 	//parts
@@ -20,9 +20,30 @@ public:					//eww dirty public. make a friend loser
 	vector<battery> batteries;
 	vector<motor> motors;
 
-	/*
-	Just wanna be ur friend
-	friend void manager::make_part();
-	*/
+	
+public: 
+	//setters
+	void add_robot(robot);
+	void add_part_h(head);
+	void add_part_t(torso);
+	void add_part_a(arm);
+	void add_part_m(motor);
+	void add_part_b(battery);
+	//getters
+	int get_qty_robot();
+	int get_qty_h();
+	int get_qty_t();
+	int get_qty_a();
+	int	get_qty_m();
+	int get_qty_b();
+	head get_head(int);
+	torso get_torso(int);
+	arm get_arm(int);
+	motor get_motor(int);
+	battery get_battery(int);
+	robot get_robot(int);
+	
+	void print_inventory();
+	
 	};
 #endif
