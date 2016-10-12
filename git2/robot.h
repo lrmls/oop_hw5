@@ -10,8 +10,8 @@
 #define __ROBOT
 class robot{
 private:
-	int model_num = 99999;
-	String name = "Temporary";
+	int model_num;
+	String name;
 	double weight=0;
 	double price=0;
 	double power=0;
@@ -24,8 +24,13 @@ private:
 	vector<battery> energy;
 
 public:
-	robot(head, torso, arm, motor, vector<battery>);
+	robot(head, torso, arm, motor, vector<battery>, string, int);
 	void print();
 	double get_price();
+	arm get_arm();
+	head get_head();
+	torso get_torso();
+	motor get_motor();
+	vector<battery> get_battery();
 };
 #endif

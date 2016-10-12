@@ -22,8 +22,7 @@ void manager::make_part(){
 	//gather part information shared by all parts
 	do{
 		cout << "4 digit Part number: ";
-		//fflush(stdin);  cin.clear();  
-		cin >> input;
+		fflush(stdin);  cin >> input;
 		part_num = view.valid_part_num(input);
 	}while(part_num == -1);
 	cout << "Part name: ";
@@ -44,6 +43,7 @@ void manager::make_part(){
 		fflush(stdin); cin >> input;							 
 		option = view.valid_option(input, 5);
 	}while (option == -1);
+
 	//options 1 head, 2 torso, 3 arm, 4 motor, 5 battery
 	switch (option){
 	case 1:
@@ -103,7 +103,7 @@ void manager::make_robot(){
 	// make a robot from selected parts.
 	view view;
 	int h, a, t, m;				//short sweet variable names for index of parts
-	int slots;
+	int slots, model;
 	vector<battery> b;
 	string input;
 	int choice;
@@ -126,14 +126,15 @@ void manager::make_robot(){
 		for (int i = 0; i < warehouse->get_qty_t(); i++)
 		{
 			torso x = warehouse->get_torso(i);
-			slots = x.get_slots();
 			cout << "(" << i + 1 << ") ";
 			x.print();
 		}
 		fflush(stdin); cin >> input;
 		choice = view.valid_option(input, warehouse->get_qty_t());
+		
 	} while (choice == -1);
 	t = choice - 1;
+	slots = warehouse->get_torso(t).get_slots();
 	//************************************************************
 	do{
 		cout << "Select an Arm:\n";
@@ -174,8 +175,14 @@ void manager::make_robot(){
 		if (choice != -1){ b.push_back( warehouse->get_battery(choice - 1) ) ; }
 		
 	}while (choice == -1 || b.size()<slots);
-	robot robbie(warehouse->get_head(h), warehouse->get_torso(t), warehouse->get_arm(a), warehouse->get_motor(m), b);
-	robbie.print();
+	do{
+		cout << "5 digit Part number: ";
+		fflush(stdin); cin >> input;
+		model = view.valid_model_num(input);
+	} while (model == -1);
+	cout << "Part name: ";
+	fflush(stdin); getline(cin, input);
+	robot robbie(warehouse->get_head(h), warehouse->get_torso(t), warehouse->get_arm(a), warehouse->get_motor(m), b, input, model);
 	warehouse->add_robot(robbie);
 
 }

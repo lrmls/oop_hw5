@@ -13,13 +13,15 @@ public:
 	void startMen();
 	void managerMen();
 	void partMen();
-	void assocMen();
 	void customerMen();
+	void customer_options();
+	void sellerMen();
 	void bossMen();
 	
 
 	int valid_option(string, int);
 	int valid_part_num(string);
+	int valid_model_num(string input);
 	double valid_double(string);
 };
 #endif

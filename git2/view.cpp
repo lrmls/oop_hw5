@@ -11,13 +11,16 @@ void view::startMen(){
 	//initial menu display 
 	cout << "User Level:\n";
 	cout << "  (1) Product Manager" << endl << "  (2) Sales Associate\n"
-		<< "  (3) Beloved Customer" << endl << "  (4) Wonderfully Haired Boss\n";
+		<< "  (3) Beloved Customer" << endl << "  (4) Wonderfully Haired Boss\n"
+		<< "  (5) Exit"				<< endl;
 }
 
+//		******************* manager menus **********************
 void view::managerMen(){
 	//product manager's options 
 	cout << "Select option:\n";
-	cout << "  (1) Create Part" << setw(20) << right << " (2) Create Robot\n";
+	cout << "  (1) Create Part" << setw(20) << right << " (2) Create Robot\n"
+		<< "  (3) View Inventory\n";
 }
 
 void view::partMen(){
@@ -28,10 +31,31 @@ void view::partMen(){
 		<< "  (5) battery\n";
 }
 
+//		******************* customer menus **********************
+void view::customerMen(){
+	//determine customer idenetitity
+	cout << "History:\n";
+	cout << "  (1) new" << setw(20) << right << "(2) returning\n";
+}
 
+void view::customer_options(){
+	//customer options
+	cout << "Select Option :\n";
+	cout << "  (1) shop" << setw(30) << right << "(2) purchase history\n"
+		<< "  (3) current bill\n";
+}
+
+//		******************* menu input validation **********************
 int view::valid_part_num(string input){
 	//vaidates string input returns valid 4 digit integer number
 	if (input.length() != 4) { return -1; }
+	for (int i = 0; i < input.length(); i++) { if (input[i]<'0' || input[i]>'9') return -1; }
+	return stoi(input);
+}
+
+int view::valid_model_num(string input){
+	//vaidates string input returns valid 4 digit integer number
+	if (input.length() != 5) { return -1; }
 	for (int i = 0; i < input.length(); i++) { if (input[i]<'0' || input[i]>'9') return -1; }
 	return stoi(input);
 }
