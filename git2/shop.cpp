@@ -63,7 +63,25 @@ void shop::run(){
 		}
 	}
 	read.close();
-	
+	//pre-initialize 1 associate
+	seller bob("Robert");
+	sellers.push_back(bob);
+	seller jane("Diane");
+	sellers.push_back(jane);
+	//initialize a couple robots and customers for testing
+	customer joe(&warehouse);
+	joe.set_name("Joey");
+	customers.push_back(joe);
+	joe.set_name("Tabitha");
+	customers.push_back(joe);
+	battery one(132, "test", 2.2, 5.5, 32.2);
+	vector<battery> power;
+	power.push_back(one);
+	robot Payton(warehouse.get_head(2), warehouse.get_torso(2), warehouse.get_arm(2), warehouse.get_motor(1), power, "Unit X32H", 95137);
+	warehouse.add_robot(Payton);
+	robot Jone(warehouse.get_head(0), warehouse.get_torso(1), warehouse.get_arm(2), warehouse.get_motor(1), power, "Unit P23I", 37159);
+	warehouse.add_robot(Jone);
+
 	//************menu navigation******************
 	
 	string input;
@@ -98,9 +116,12 @@ void shop::run(){
 		else if (choice == 3)
 		{		//customer menus
 			int cust_num;
+			int seller_index;
 			customer customer(&warehouse);
-			do{
-				do{		//determine customer
+
+			//determine customer
+			do{				
+				do{		
 					view.customerMen();
 					fflush(stdin);  cin >> input;
 					choice = view.valid_option(input, 2);
@@ -119,25 +140,35 @@ void shop::run(){
 					if (cust_num != -1){ customer = customers[cust_num]; }
 				}
 			} while (cust_num == -1);
-
-			do{		//customer option selection
+			//customer option selection
+			do{		
 				view.customer_options();
 				fflush(stdin);  cin >> input;
 				choice = view.valid_option(input, 3);
 			} while (choice == -1);
 			if (choice == 1)
-			{
-				customer.shop();
-			}
+			{	//purchase
+				if (warehouse.get_qty_robot() == 0 ){ cout << "No available robots models\n"; }
+				else if(sellers.size() == 0) { cout << "No avalaible associates to help\n"; }
+				else{ 
+					vector<robot> purchases = customer.shop(sellers, &seller_index);	//
+					if (purchases.size() == 0){ continue; }
+					seller associate = get_seller(seller_index);
+					order order(customer, associate, purchases);
+					orders.push_back(order);
+				}
+			}	//order history
 			else if (choice == 2)
 			{
-				cout << "Coming Soon! :)\n";
-			}
+				customer.order_nav(orders);
+				
+			}	//bill
 			else if (choice == 3)
 			{
-				cout << "Coming Soon! :)\n";
+				customer.show_bill(orders);
 			}
-		}
+		}	
+			//end scope of individual customer object
 		else { cout << "Coming Soon! :)\n"; };
 	}
 }
@@ -159,4 +190,8 @@ int shop::get_customer(){
 		} while (choice == -1);
 		return choice-1;
 	}
+}
+
+seller shop::get_seller(int index){
+	return sellers[index];
 }

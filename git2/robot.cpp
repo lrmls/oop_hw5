@@ -24,6 +24,14 @@ void robot::print(){
 	cout << "Model: " << model_num << ", Name: " << name << ", Weight: " << weight << "lbs\n    Price: $" << price << ", Power Supply: " << power << "kwh, Power Usage: " << energy_use << "watts" << endl;
 }
 
+void robot::print_parts(){
+	cout << "Head:\n";	skull.print();
+	cout << "Arms:\n";	grabber.print();
+	cout << "Body:\n";	body.print();
+	cout << "Motor:\n";	mover.print();
+	cout << "Batteries:\n";
+	for (battery b : energy) { b.print(); }
+}
 double robot::get_price(){return price;}
 arm robot::get_arm(){ return grabber; }
 head robot::get_head(){ return skull; }

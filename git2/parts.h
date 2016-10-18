@@ -3,12 +3,12 @@
 	base class			component
 	derived classes		head, arm, torso, motor, battery
 */
-
+#ifndef __PARTS_CLASS
+#define __PARTS_CLASS
 #include "std_lib_facilities.h"
 
 
-#ifndef __PARTS_CLASS
-#define __PARTS_CLASS
+
 class component{
 protected:
 	int part_num;

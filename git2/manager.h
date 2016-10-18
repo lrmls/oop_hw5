@@ -4,12 +4,12 @@
 						create robots from parts, store robots in stock
 */
 
+#ifndef __MANAGER_CLASS
+#define __MANAGER_CLASS
 #include "std_lib_facilities.h"
 #include "parts.h"
 #include "stock.h"
 
-#ifndef __MANAGER_CLASS
-#define __MANAGER_CLASS
 class manager{
 private:
 	stock *warehouse;

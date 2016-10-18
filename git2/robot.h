@@ -1,13 +1,13 @@
 /*
 	defines robot class
 */
-
+#ifndef __ROBOT
+#define __ROBOT
 #include "std_lib_facilities.h"
 #include "parts.h"
 
 
-#ifndef __ROBOT
-#define __ROBOT
+
 class robot{
 private:
 	int model_num;
@@ -24,8 +24,10 @@ private:
 	vector<battery> energy;
 
 public:
+	robot();
 	robot(head, torso, arm, motor, vector<battery>, string, int);
 	void print();
+	void print_parts();
 	double get_price();
 	arm get_arm();
 	head get_head();

@@ -2,11 +2,11 @@
 	view class
 	displays all the menus and does data validation on input
 */
-
-#include "std_lib_facilities.h"
-
 #ifndef __VIEW
 #define __VIEW
+#include "std_lib_facilities.h"
+
+
 
 class view{
 public:

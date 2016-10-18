@@ -14,6 +14,7 @@
 #include <fstream>
 #include <stdexcept>
 
+
 void test_mode();
 struct line{ //storing file read data for auto initialize warehouse
 		char flag;
@@ -24,12 +25,12 @@ struct line{ //storing file read data for auto initialize warehouse
 int main(){
 
 	//test_mode();		//uncomment for test
-	
-	shop shop;				//mimicing intiializing the controller
+
+	shop shop;				//mimicking intiializing the controller
 	shop.run();
 	keep_window_open();
-}
 
+}
 void test_mode(){
 	/************test code************/
 

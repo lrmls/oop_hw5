@@ -9,7 +9,7 @@
 
 void view::startMen(){
 	//initial menu display 
-	cout << "User Level:\n";
+	cout << "\nUser Level:\n";
 	cout << "  (1) Product Manager" << endl << "  (2) Sales Associate\n"
 		<< "  (3) Beloved Customer" << endl << "  (4) Wonderfully Haired Boss\n"
 		<< "  (5) Exit"				<< endl;
@@ -40,7 +40,7 @@ void view::customerMen(){
 
 void view::customer_options(){
 	//customer options
-	cout << "Select Option :\n";
+	cout << "Select Option:\n";
 	cout << "  (1) shop" << setw(30) << right << "(2) purchase history\n"
 		<< "  (3) current bill\n";
 }

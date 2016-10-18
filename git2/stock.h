@@ -1,13 +1,13 @@
 /*
 	class for storing vectors of parts and robots
 */
+#ifndef __STOCK_CLASS
+#define __STOCK_CLASS
 
 #include "std_lib_facilities.h"
 #include "parts.h"
 #include "robot.h"
 
-#ifndef __STOCK_CLASS
-#define __STOCK_CLASS
 
 class stock{
 private:				

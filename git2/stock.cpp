@@ -6,7 +6,7 @@
 #include "stock.h"
 
 //methods for adding to robot and parts vectors
-void stock::add_robot(robot rob){ robots.push_back(rob);	}
+void stock::add_robot(robot rob){ robots.push_back(rob); }
 void stock::add_part_h(head h){ heads.push_back(h); }
 void stock::add_part_t(torso t){ torsos.push_back(t); }
 void stock::add_part_a(arm a){ arms.push_back(a); }
