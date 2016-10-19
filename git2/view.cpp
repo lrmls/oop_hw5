@@ -63,7 +63,7 @@ int view::valid_part_num(string input){
 }
 
 int view::valid_model_num(string input){
-	//vaidates string input returns valid 4 digit integer number
+	//vaidates string input returns valid 5 digit integer number
 	if (input.length() != 5) { return -1; }
 	for (int i = 0; i < input.length(); i++) { if (input[i]<'0' || input[i]>'9') return -1; }
 	return stoi(input);
@@ -79,10 +79,9 @@ double view::valid_double(string input){
 	}
 	if (decimal > 1) { return -1; }
 	return stod(input);
-
 }
 int view::valid_option(string option, int max){
-	//validates a single digit number from string iput between 1 and MAX(variable by call)
+	//validates a single digit number from string input between 1 and MAX(determined by caller)
 	if (option.length() > 1) { return -1; }
 	if (option[0] < '1' || option[0] > '9') { return -1; }
 	int num = stoi(option);

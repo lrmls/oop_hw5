@@ -1,5 +1,7 @@
 /*
 	implementaion of manager class
+	big menu navigation steps for creating parts and robots.
+	constructed with a stock* for easy stock access because stock access is all that manager does
 */
 
 #include "std_lib_facilities.h"

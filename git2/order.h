@@ -19,10 +19,16 @@ private:
 
 public:
 	order(customer, seller, vector<robot>);
+	order(customer, seller, vector<robot>, int, int, int, bool);
 	void set_date();
 	
 	string get_cust_name();
 	string get_seller_name();
+	robot get_bot(int);
+	int get_qty_bot();
+	int get_day();
+	int get_month();
+	int get_year();
 	double get_price();
 	bool is_payed();
 

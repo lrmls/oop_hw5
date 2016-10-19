@@ -1,5 +1,9 @@
 /*
 	implementation of robot class
+	has defined aempty default constructor because it fixed an error message i got....
+	otherwise is constructed with 1 of each part, a model number and name and calculates it's
+		variable for total statistics between its parts dureing construction
+	can print and get its data, as well as the data of its parts
 */
 
 #include "std_lib_facilities.h"
@@ -19,9 +23,12 @@ skull{ head }, body{ torso }, grabber{ arm }, mover{ motor }, name{ title }, mod
 	energy_use += grabber.get_usage() + mover.get_usage();
 	price += skull.get_price() + body.get_price() + grabber.get_price() + mover.get_price();
 }
+robot::robot(){
+
+}
 void robot::print(){
 
-	cout << "Model: " << model_num << ", Name: " << name << ", Weight: " << weight << "lbs\n    Price: $" << price << ", Power Supply: " << power << "kwh, Power Usage: " << energy_use << "watts" << endl;
+	cout << fixed << setprecision(2) << "Model: " << model_num << ", Name: " << name << ", Weight: " << weight << " lbs, Price: $" << price << "\n       Power Supply: " << power << " kwh, Power Usage: " << energy_use << " watts" << endl;
 }
 
 void robot::print_parts(){

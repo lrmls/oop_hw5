@@ -1,4 +1,6 @@
 
+//Controller object. houses main program loop
+
 #include "std_lib_facilities.h"
 #include "parts.h"
 #include "manager.h"
@@ -13,92 +15,26 @@
 #include <stdexcept>
 
 
-struct line{ 
-	//storing file read data for auto initialize warehouse
-	//fix and get rid of
-		char flag;
-		int x, y;
-		double w, p, e, s;
-		string n;
-	};
-
-
 void shop::run(){
 	
 	stock warehouse;
 	view view;
-	manager manager(&warehouse, "James Kilner");
+	manager manager(&warehouse, "James Kilner");		//random names for the sake of it
 	boss boss("Henry Blackburn");
 	
-	// pre-initialize parts
-	/*
-	string data = "parts.txt";
-	ifstream read{ data };
-	if (!read){ cout << "failed to read data from" << data << endl; }
-	line line;
-	while (read >> line.flag){
-		switch (line.flag){
-		case 'h':{
-			read >> line.x; read >> line.n; read >> line.w; read >> line.p;
-			head head(line.x, line.n, line.w, line.p);
-			warehouse.add_part_h(head);
-			break; }
-		case 't':{
-			read >> line.x; read >> line.n; read >> line.w; read >> line.p; read >> line.y;
-			torso torso(line.x, line.n, line.w, line.p, line.y);
-			warehouse.add_part_t(torso);
-			break; }
-		case 'a':{
-			read >> line.x; read >> line.n; read >> line.w; read >> line.p; read >> line.e;
-			arm arm(line.x, line.n, line.w, line.p, line.e);
-			warehouse.add_part_a(arm);
-			break; }
-		case 'b':{
-			read >> line.x; read >> line.n; read >> line.w; read >> line.p; read >> line.e;
-			battery battery(line.x, line.n, line.w, line.p, line.e);
-			warehouse.add_part_b(battery);
-			break; }
-		case 'm':{
-			read >> line.x; read >> line.n; read >> line.w; read >> line.p; read >> line.e; read >> line.s;
-			motor motor(line.x, line.n, line.w, line.p, line.e, line.s);
-			warehouse.add_part_m(motor);
-			break; }
-		}
-	}
-	read.close();
-	
-	//pre-initialize 1 associate
-	seller bob("Robert");
-	sellers.push_back(bob);
-	seller jane("Diane");
-	sellers.push_back(jane);
-	//initialize a couple robots and customers for testing
-	customer joe(&warehouse);
-	joe.set_name("Joey");
-	customers.push_back(joe);
-	joe.set_name("Tabitha");
-	customers.push_back(joe);
-	battery one(132, "test", 2.2, 5.5, 32.2);
-	vector<battery> power;
-	power.push_back(one);
-	robot Payton(warehouse.get_head(2), warehouse.get_torso(2), warehouse.get_arm(2), warehouse.get_motor(1), power, "Unit X32H", 95137);
-	warehouse.add_robot(Payton);
-	robot Jone(warehouse.get_head(0), warehouse.get_torso(1), warehouse.get_arm(2), warehouse.get_motor(1), power, "Unit P23I", 37159);
-	warehouse.add_robot(Jone);
-	*/
-	//************menu navigation******************
+	//********************************menu navigation***********************************
 	
 	string input;
 	int choice;
-	while (true){
-		do{
-			view.startMen();
-			fflush(stdin);  cin >> input;
+	while (true){									//**********************
+		do{											//    Data validation loop
+			view.startMen();						//    Used exhaustively throughout
+			fflush(stdin);  cin >> input;			//    to ensure clean valid input
 			choice = view.valid_option(input, 5);
-		} while (choice == -1);
+		} while (choice == -1);						//************************
 		if (choice == 5){ return; };
 		if (choice == 1)
-		{			//manager menus************************
+		{			//manager menus************************************************
 			do{
 				view.managerMen();
 				fflush(stdin);  cin >> input;
@@ -117,8 +53,22 @@ void shop::run(){
 				warehouse.print_inventory();
 			}
 		}
+		else if (choice == 2)
+		{			//associates menus************************************************
+			cout << "Hire new associate?\n  (1) yes          (2)no\n";
+			do{
+				fflush(stdin); cin >> input;
+				choice =view.valid_option(input, 2);
+			} while (choice == -1);
+			if (choice == 1){
+				cout << "Enter Name:";
+				cin >> input;
+				seller newby(input);
+				sellers.push_back(newby);
+			}
+		}
 		else if (choice == 3)
-		{		//customer menus**************************
+		{		//customer menus*****************************************************
 			int cust_num;
 			int seller_index;
 			customer customer(&warehouse);
@@ -133,7 +83,7 @@ void shop::run(){
 				if (choice == 1)
 				{
 					cout << "name: ";
-					cin >> input; cout << '\n';
+					fflush(stdin);  cin >> input;
 					customer.set_name(input);
 					customers.push_back(customer);
 					cust_num = 0;
@@ -173,14 +123,14 @@ void shop::run(){
 			}
 		}	//end scope of individual customer object	
 		else if (choice == 4){
-			do{		//Boss Menus ******************************
+			do{		//Boss Menus *************************************************
 				view.bossMen();
 				fflush(stdin);  cin >> input;
 				choice = view.valid_option(input, 5);
 			} while (choice == -1);
 			if (choice == 3)
 			{
-				boss.load(&warehouse, orders, sellers, customers);
+				boss.load(&warehouse, &orders, &sellers, &customers);
 			}
 			if (choice == 4)
 			{
@@ -195,6 +145,7 @@ void shop::run(){
 		else { cout << "Coming Soon! :)\n"; };
 	}
 }
+
 int shop::get_customer(){
 	if (customers.size() == 0){ cout << "there are no existing customers\n"; return -1; }
 	else{

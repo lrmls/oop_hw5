@@ -1,5 +1,6 @@
 /*
 	Automated tester for shop (hw5 object oriented prog.)
+	used alot early. later i failed to keep it updated and just tested through main loop
 */
 
 #include "std_lib_facilities.h"
@@ -9,6 +10,7 @@
 #include "view.h"
 #include "robot.h"
 #include "shop.h"
+
 
 #include <iostream>
 #include <fstream>
@@ -22,6 +24,8 @@ struct line{ //storing file read data for auto initialize warehouse
 		double w, p, e, s;
 		string n;
 	};
+
+/*
 int main(){
 
 	//test_mode();		//uncomment for test
@@ -31,6 +35,7 @@ int main(){
 	keep_window_open();
 
 }
+*/
 void test_mode(){
 	/************test code************/
 
@@ -88,6 +93,7 @@ void test_mode(){
 	break; }
 	}	
 	}
+
 	read.close();
 	//end reuseable code; start code for visual tests
 	cout << "\n_______Pre-initialized warehouse____________\n\n";

@@ -1,5 +1,7 @@
 /*
 	mthods for managing stock
+	getters,setters. for all parts and robots
+	also can print entire stock becuase its useful to be able to see as a product manager
 */
 
 #include "std_lib_facilities.h"

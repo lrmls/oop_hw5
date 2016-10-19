@@ -14,7 +14,7 @@ private:
 public:
 	boss(string);
 	
-	void load(stock*, vector<order>, vector<seller>, vector<customer>);
+	void load(stock*, vector<order>*, vector<seller>*, vector<customer>*);
 	void save(stock*, vector<order>, vector<seller>, vector<customer>);
 	bool evaluate(vector<order>, vector<seller>);
 };

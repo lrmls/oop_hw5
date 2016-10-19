@@ -8,7 +8,7 @@
 
 
 customer::customer(stock* stock) : warehouse{ stock } {}
-
+//initialize with a stock* for easy access of any customer to robots for searching
 void customer::print(){
 	cout << name;
 }
@@ -16,8 +16,10 @@ void customer::print(){
 void customer::set_name(string title){
 	name = title;
 }
+string customer::get_name(){ return name; }
 
 vector<robot> customer::shop(vector<seller> associates, int* seller_index){
+	//add as many robots as desired, adding to vector to be returned
 	string input;
 	int choice, qty;
 	view view;
@@ -78,6 +80,7 @@ vector<robot> customer::shop(vector<seller> associates, int* seller_index){
 }
 
 void customer::order_nav(vector<order> all){
+	//take all orders. trim into vector of only current customers orders, 
 	vector<order> mine;
 	int i = 0, choice;
 	view view;
@@ -90,6 +93,7 @@ void customer::order_nav(vector<order> all){
 	}
 	if (mine.size() == 0){ cout << "No order history.\n";  return; }
 	while(true){
+		//loop until exit, displaying orders listed by date of order.
 		cout << "Select an order:\n";
 		i = 0;
 		for (order x : mine){
@@ -109,6 +113,7 @@ void customer::order_nav(vector<order> all){
 }
 
 void customer::show_bill(vector<order> all){
+	//show monetary data from each order, also grand total
 	int i = 0;
 	double total = 0;
 	for (order h : all){
@@ -122,4 +127,3 @@ void customer::show_bill(vector<order> all){
 	}
 	cout << "Outstanding balance: $" << total << endl;
 }
-string customer::get_name(){ return name; }

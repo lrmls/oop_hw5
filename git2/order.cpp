@@ -17,6 +17,18 @@ order::order(customer buyer, seller associate, vector<robot> purchases) : cust{ 
 	total = sub_total + tax;
 }
 
+order::order(customer buyer, seller associate, vector<robot> purchases, int d, int m, int y, bool pay) : cust{ buyer }, sellr{ associate }, merchandise{ purchases }{
+	day = d;
+	month = m;
+	year = y;
+	payed = pay;
+	sub_total = 0;
+	tax_rate = .0825;
+	for (robot r : merchandise) { sub_total += r.get_price(); }
+	tax = sub_total * tax_rate;
+	total = sub_total + tax;
+}
+
 void order::set_date(){
 
 	time_t currentTime;
@@ -54,10 +66,18 @@ void order::print_merchandise(){
 void order::print_date(){
 	cout << day << "/" << month << "/" << year;
 }
-void order::print_price_breakdown(){ cout << "Subtotal: $" << sub_total << ", Tax: $" << tax << "\t\tTotal: $" << total << endl; }
+
+void order::print_price_breakdown(){ cout << fixed << setprecision(2) << "Subtotal: $" << sub_total << ", Tax: $" << tax << "\t\tTotal: $" << total << endl; }
 double order::get_price(){ return total; }
 bool order::is_payed(){ return payed; }
 void order::pay(){ payed = true; }
+int order::get_day(){ return day; }
+int order::get_month(){ return month; }
+int order::get_year(){ return year; }
+int order::get_qty_bot(){ return merchandise.size();  }
+robot order::get_bot(int index){
+	return merchandise[index];
+}
 
 
 
