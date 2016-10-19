@@ -13,8 +13,9 @@
 class manager{
 private:
 	stock *warehouse;
+	string name;
 public:
-	manager(stock*);
+	manager(stock*, string);
 	void make_part();
 	void make_robot();
 };

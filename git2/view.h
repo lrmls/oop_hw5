@@ -15,7 +15,7 @@ public:
 	void partMen();
 	void customerMen();
 	void customer_options();
-	void sellerMen();
+	void sellerMen();   //unresolved feature, viewing their sales records
 	void bossMen();
 	
 

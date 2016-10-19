@@ -19,16 +19,16 @@ void view::startMen(){
 void view::managerMen(){
 	//product manager's options 
 	cout << "Select option:\n";
-	cout << "  (1) Create Part" << setw(20) << right << " (2) Create Robot\n"
+	cout << "  (1) Create Part" << setw(30) << right << " (2) Create Robot\n"
 		<< "  (3) View Inventory\n";
 }
 
 void view::partMen(){
 	//menu display for part type
 	cout << "Part Type:\n";
-	cout << "  (1) head" << setw(20) << right << "(2) torso\n"
-		<< "  (3) arm" << setw(21) << right << "(4) motor\n"
-		<< "  (5) battery\n";
+	cout << "  (1) Head" << setw(20) << right << "(2) Torso\n"
+		<< "  (3) Arm" << setw(21) << right << "(4) Motor\n"
+		<< "  (5) Battery\n";
 }
 
 //		******************* customer menus **********************
@@ -41,8 +41,17 @@ void view::customerMen(){
 void view::customer_options(){
 	//customer options
 	cout << "Select Option:\n";
-	cout << "  (1) shop" << setw(30) << right << "(2) purchase history\n"
-		<< "  (3) current bill\n";
+	cout << "  (1) Shop" << setw(35) << right << "(2) Purchase History\n"
+		<< "  (3) Current bill\n";
+}
+//      ******************* Boss Menus  *******************************
+
+void view::bossMen(){
+	//Boss options
+	cout << "Select Option:\n";
+	cout << "  (1) Shop Stats" << setw(33) << right << "(2) Order History\n"
+		<< "  (3) Load Shop" << setw(30) << right << "(4) Save Shop\n"
+		<< "  (5) Evaluate Associate\n";
 }
 
 //		******************* menu input validation **********************

@@ -25,13 +25,13 @@ vector<robot> customer::shop(vector<seller> associates, int* seller_index){
 	
 	//loop to select however many robots to buy
 	do{
-				cout << "select an associate:\n";
-				for (int i = 0; i < associates.size(); i++){
-					cout << "(" << i + 1 << ") " << associates[i].get_name() << endl;
-				}
-				fflush(stdin); cin >> input;
-				choice = view.valid_option(input, associates.size());
-			} while (choice == -1);
+		cout << "select an associate:\n";
+		for (int i = 0; i < associates.size(); i++){
+				cout << "(" << i + 1 << ") " << associates[i].get_name() << endl;
+			}
+		fflush(stdin); cin >> input;
+		choice = view.valid_option(input, associates.size());
+		} while (choice == -1);
 	*seller_index = choice - 1;
 	 do{
 		do{

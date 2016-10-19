@@ -32,7 +32,9 @@ void robot::print_parts(){
 	cout << "Batteries:\n";
 	for (battery b : energy) { b.print(); }
 }
+int robot::get_model_num(){ return model_num; }
 double robot::get_price(){return price;}
+string robot::get_name(){ return name; }
 arm robot::get_arm(){ return grabber; }
 head robot::get_head(){ return skull; }
 torso robot::get_torso(){ return body; }

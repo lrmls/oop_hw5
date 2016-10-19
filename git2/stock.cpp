@@ -49,7 +49,7 @@ void stock::print_inventory(){
 	for (motor part : motors){
 		part.print();
 	}
-	cout << "\nheads:\n";
+	cout << "\nbatteries:\n";
 	for (battery part : batteries){
 		part.print();
 	}

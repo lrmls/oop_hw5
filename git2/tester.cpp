@@ -51,7 +51,7 @@ void test_mode(){
 	
 	stock warehouse;
 	view view;
-	manager manager(&warehouse);
+	manager manager(&warehouse, "Ted");
 
 	//*********initialize warehouse with parts from data read from formatted file*************
 	//file format: 1) space delimited. 2) 1st char = flag indicating part type 3) string containing data in order per type

@@ -7,8 +7,9 @@
 #include "parts.h"
 #include "view.h"
 
-manager::manager(stock *repo){
+manager::manager(stock *repo, string title){
 	warehouse = repo;
+	name = title;
 }
 
 void manager::make_part(){

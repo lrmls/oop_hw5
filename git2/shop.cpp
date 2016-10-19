@@ -6,6 +6,7 @@
 #include "view.h"
 #include "robot.h"
 #include "shop.h"
+#include "boss.h"
 
 #include <iostream>
 #include <fstream>
@@ -26,9 +27,11 @@ void shop::run(){
 	
 	stock warehouse;
 	view view;
-	manager manager(&warehouse);
+	manager manager(&warehouse, "James Kilner");
+	boss boss("Henry Blackburn");
 	
 	// pre-initialize parts
+	/*
 	string data = "parts.txt";
 	ifstream read{ data };
 	if (!read){ cout << "failed to read data from" << data << endl; }
@@ -63,6 +66,7 @@ void shop::run(){
 		}
 	}
 	read.close();
+	
 	//pre-initialize 1 associate
 	seller bob("Robert");
 	sellers.push_back(bob);
@@ -81,7 +85,7 @@ void shop::run(){
 	warehouse.add_robot(Payton);
 	robot Jone(warehouse.get_head(0), warehouse.get_torso(1), warehouse.get_arm(2), warehouse.get_motor(1), power, "Unit P23I", 37159);
 	warehouse.add_robot(Jone);
-
+	*/
 	//************menu navigation******************
 	
 	string input;
@@ -94,7 +98,7 @@ void shop::run(){
 		} while (choice == -1);
 		if (choice == 5){ return; };
 		if (choice == 1)
-		{			//manager menus
+		{			//manager menus************************
 			do{
 				view.managerMen();
 				fflush(stdin);  cin >> input;
@@ -114,7 +118,7 @@ void shop::run(){
 			}
 		}
 		else if (choice == 3)
-		{		//customer menus
+		{		//customer menus**************************
 			int cust_num;
 			int seller_index;
 			customer customer(&warehouse);
@@ -167,8 +171,27 @@ void shop::run(){
 			{
 				customer.show_bill(orders);
 			}
-		}	
-			//end scope of individual customer object
+		}	//end scope of individual customer object	
+		else if (choice == 4){
+			do{		//Boss Menus ******************************
+				view.bossMen();
+				fflush(stdin);  cin >> input;
+				choice = view.valid_option(input, 5);
+			} while (choice == -1);
+			if (choice == 3)
+			{
+				boss.load(&warehouse, orders, sellers, customers);
+			}
+			if (choice == 4)
+			{
+				boss.save(&warehouse, orders, sellers, customers);
+			}
+			if (choice == 5)
+			{
+				if (boss.evaluate(orders, sellers))  { cout << "Raise given. Good Job!\n"; }
+				else{ cout << "Work Harder!\n"; }
+			}
+		}
 		else { cout << "Coming Soon! :)\n"; };
 	}
 }

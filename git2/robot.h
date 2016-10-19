@@ -28,7 +28,10 @@ public:
 	robot(head, torso, arm, motor, vector<battery>, string, int);
 	void print();
 	void print_parts();
+
+	int get_model_num();
 	double get_price();
+	string get_name();
 	arm get_arm();
 	head get_head();
 	torso get_torso();
